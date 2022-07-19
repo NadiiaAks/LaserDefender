@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float leftPadding;
+    [SerializeField] private float rightPadding;
+    [SerializeField] private float topPadding;
+    [SerializeField] private float downPadding;
 
     private Vector2 rawInput;
     private Vector2 minBouns;
@@ -31,8 +35,8 @@ public class Player : MonoBehaviour
     {
         Vector2 delta = rawInput * moveSpeed * Time.deltaTime;
         Vector2 newPos = new Vector2();
-        newPos.x = Mathf.Clamp(transform.position.x + delta.x, minBouns.x, maxBouns.x);
-        newPos.y = Mathf.Clamp(transform.position.y + delta.y, minBouns.y, maxBouns.y);
+        newPos.x = Mathf.Clamp(transform.position.x + delta.x, minBouns.x + leftPadding, maxBouns.x - rightPadding);
+        newPos.y = Mathf.Clamp(transform.position.y + delta.y, minBouns.y + downPadding, maxBouns.y - topPadding);
         transform.position = newPos;
     }
 
