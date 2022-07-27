@@ -15,6 +15,13 @@ public class Player : MonoBehaviour
     private Vector2 minBouns;
     Vector2 maxBouns;
 
+    Shooter shooter;
+
+    private void Awake()
+    {
+        shooter = GetComponent<Shooter>();
+    }
+
     private void Start()
     {
         InitBounds();
@@ -43,5 +50,13 @@ public class Player : MonoBehaviour
     private void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
+    }
+
+    void OnFire(InputValue value)
+    {
+        if(shooter != null)
+        {
+            shooter.isFire = value.isPressed;
+        }
     }
 }
