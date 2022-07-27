@@ -8,13 +8,21 @@ public class Shooter : MonoBehaviour
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLifeTime = 5f;
     [SerializeField] float firingRate = 0.2f;
+    [SerializeField] bool useAI;
+    [SerializeField] float timeBetweenProjectileSpawns = 1f;
+    [SerializeField] float spawnTimeVariance = 0f;
+    [SerializeField] float minTime = 0.2f;
+
 
     public bool isFire;
 
     Coroutine firingCoroutine;
     void Start()
     {
-        
+        if (useAI)
+        {
+            isFire = true;
+        }
     }
 
     void Update()
@@ -49,5 +57,11 @@ public class Shooter : MonoBehaviour
             Destroy(instance, projectileLifeTime);
             yield return new WaitForSeconds(firingRate);
         }
+    }
+
+    public float GetRandomTime()
+    {
+        float randomTime = Random.Range(timeBetweenProjectileSpawns - spawnTimeVariance, timeBetweenProjectileSpawns + spawnTimeVariance);
+        return Mathf.Clamp(randomTime, minTime, float.MaxValue);
     }
 }
