@@ -9,9 +9,13 @@ public class Health : MonoBehaviour
 
     CameraShake cameraShake;
     [SerializeField] bool applyCameraShake;
+    [SerializeField] bool applySoundDamage;
+
+    AudioPlayer audioPlayer;
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
     }
 
@@ -23,6 +27,7 @@ public class Health : MonoBehaviour
         {
             TakeDamage(damage.GetDamage());
             PlayHitEffect();
+            PlayAudio();
             ShakeCamera();
             damage.Hit();
         }
@@ -52,8 +57,13 @@ public class Health : MonoBehaviour
         {
             cameraShake.Play();
         }
-        {
+    }
 
+    void PlayAudio()
+    {
+        if(audioPlayer != null && applySoundDamage)
+        {
+            audioPlayer.PlayDamageClip();
         }
     }
 }
