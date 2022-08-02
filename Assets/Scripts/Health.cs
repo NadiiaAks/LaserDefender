@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
         }
         else if(isPlayer)
         {
-            Time.timeScale = 0f;
+            Destroy(gameObject);
             levelManager.LoadGameOver();
         }
 
