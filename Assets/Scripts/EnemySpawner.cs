@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+      StartCoroutine(SpawnEnemies());
     }
     public WaveConfigSO GetCurrentWave()
     {
@@ -36,5 +36,6 @@ public class EnemySpawner : MonoBehaviour
         } while (isLooping);
        
     }
+
 
 }
