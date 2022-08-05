@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] float sceneLoadDeley = 2f;
     [SerializeField] int scoreForNextLvl = 100;
+    [SerializeField] GameObject creditsCanvas;
 
     ScoreKeeper scoreKeeper;
     int currentScene;
@@ -37,7 +38,7 @@ public class LevelManager : MonoBehaviour
     public void LoadGameOver()
     {
         Debug.Log("Game Over" + lastScene);
-        StartCoroutine(WaitAndLoad(3, sceneLoadDeley));
+        StartCoroutine(WaitAndLoad(4, sceneLoadDeley));
     }
 
     public void ExitGame()
@@ -51,6 +52,11 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(WaitAndLoad(currentScene + 1, sceneLoadDeley));
         }
+    }
+
+    public void ActivCredits()
+    {
+        creditsCanvas.SetActive(true);
     }
 
     IEnumerator WaitAndLoad(int Scene, float delay)
